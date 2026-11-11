@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Flappy Bird" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lb_Bird" Height="50" Width="50" Content="Bird" FontSize="24" HorizontalAlignment="Left" Margin="50" />
+        <Canvas x:Name="Bird_path">
+            <Label x:Name="lb_Bird" Height="50" Width="50" Content="Bird" FontSize="24" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True"/>
+        </Canvas>
     </Grid>
 </Window>
