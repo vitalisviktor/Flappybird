@@ -35,11 +35,13 @@ namespace Flappybird
             fallSpeed = 1;
             goingUp = 0;
             timer.Start();
+            Create_Pipes();
             
         }
 
         private void Tick(object? sender, EventArgs e)
         {
+
             Canvas.SetTop(lb_Bird, Canvas.GetTop(lb_Bird) + fallSpeed);
             tickCount++;
             if (goingUp > 0)
@@ -50,6 +52,17 @@ namespace Flappybird
             if (tickCount % 20 == 0)
             {
                 fallSpeed++;
+            }
+
+            if(tickCount % 30 == 0)
+            {
+                Create_Pipes();
+            }
+
+            foreach(var p in Pipe_path.Children)
+            {
+                
+                Canvas.SetLeft((UIElement)p,Canvas.GetLeft((UIElement)p) - 5);
             }
         }
 
@@ -63,17 +76,33 @@ namespace Flappybird
             }
         }
 
-        private void Create_Pipe()
+        private void Create_Pipes()
         {
             rnd = new Random();
-            Image pipeBottom = new Image();
-            Image pipeTop = new Image();
+            Label pipeBottom = new Label();
+            Label pipeTop = new Label();
 
             int topPipeHeight = rnd.Next(50,200);
-            int bottomPipeHeight = topPipeHeight - rnd.Next(50, 100);
+            int bottomPipeHeight = topPipeHeight - rnd.Next(30, 49);
 
             pipeBottom.Height = bottomPipeHeight;
             pipeTop.Height = topPipeHeight;
+
+            pipeBottom.Width = 50;
+            pipeTop.Width = 50;
+
+            pipeBottom.Background = Brushes.Red;
+            pipeTop.Background = Brushes.Red;
+
+            Pipe_path.Children.Add(pipeBottom);
+            Pipe_path.Children.Add(pipeTop);
+
+            Canvas.SetLeft(pipeBottom,700);
+            Canvas.SetLeft(pipeTop,700);
+
+            Canvas.SetTop(pipeBottom,450 - bottomPipeHeight);
+            
+
         }
     }
 }
