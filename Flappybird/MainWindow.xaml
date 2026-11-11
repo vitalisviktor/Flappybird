@@ -8,8 +8,18 @@
         Title="Flappy Bird" Height="450" Width="800">
     <Grid>
         <Canvas x:Name="Bird_path">
-            <Label x:Name="lb_Bird" Height="40" Width="40" Content="Bird" FontSize="18" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True"/>
+            <Label x:Name="lb_Bird" Height="40" Width="40" Content="Bird" FontSize="18" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True" Background="Turquoise" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup >
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform x:Name="bird_rotation" Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
         </Canvas>
+        
         <Canvas x:Name="Pipe_path">
             
 
