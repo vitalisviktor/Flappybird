@@ -8,7 +8,11 @@
         Title="Flappy Bird" Height="450" Width="800">
     <Grid>
         <Canvas x:Name="Bird_path">
-            <Label x:Name="lb_Bird" Height="50" Width="50" Content="Bird" FontSize="24" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True"/>
+            <Label x:Name="lb_Bird" Height="40" Width="40" Content="Bird" FontSize="18" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True"/>
+        </Canvas>
+        <Canvas x:Name="Pipe_path">
+            
+
         </Canvas>
     </Grid>
 </Window>
