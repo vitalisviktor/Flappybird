@@ -85,27 +85,24 @@ namespace Flappybird
             {
                 
                 Canvas.SetLeft(p,Canvas.GetLeft(p) - 5);
-                if(Canvas.GetLeft(p) > 50 && Canvas.GetLeft(p) < 95)
+                if(Canvas.GetLeft(p) >= 10 && Canvas.GetLeft(p) <= 90)
                     {
                         if(Canvas.GetBottom(p) == 0) //lenti
                         {
-                            //Trace.WriteLine(Canvas.GetTop(lb_Bird));
-                            if(p.Height + lb_Bird.Height >= Canvas.GetTop(lb_Bird) && false)
+                            //Trace.WriteLine(Canvas.GetTop(lb_Bird);
+                            if ((p.Height) + Canvas.GetTop(lb_Bird) + lb_Bird.Height >= Pipe_path.ActualHeight)
                             {
                                 MessageBox.Show("Meghaltál", "Vesztes");
-                                timer.Stop();
+                                //timer.Stop();
 
                             }
                         }
                         else //fenti
                         {
-                            Trace.WriteLine(p.Height);
-                            Trace.WriteLine(Canvas.GetTop(lb_Bird));
-                            Trace.WriteLine(lb_Bird.ActualHeight);
-                            if ((p.Height) + Canvas.GetTop(lb_Bird) + lb_Bird.Height >= 412.5)
+                            if (p.Height >= Canvas.GetTop(lb_Bird))
                             {
                                 MessageBox.Show("Meghaltál", "Vesztes");
-                                timer.Stop();
+                                //timer.Stop();
 
                             }
                         }
