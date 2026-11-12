@@ -24,6 +24,8 @@ namespace Flappybird
         private int tickCount;
         private int fallSpeed;
 
+        private List<Rectangle> toBeRemoved;
+
         private int flip;
         private int goingUp;
         public MainWindow()
@@ -31,14 +33,14 @@ namespace Flappybird
             InitializeComponent();
             lb_Bird.Focus();
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(10);
+            timer.Interval = TimeSpan.FromMilliseconds(5);
             timer.Tick += Tick;
             tickCount = 0;
             fallSpeed = 1;
             flip = 0;
             goingUp = 0;
             timer.Start();
-            Create_Pipes();
+            
             
         }
 
@@ -46,7 +48,7 @@ namespace Flappybird
         {
             if (flip > 0)
             {
-                bird_rotation.Angle += 30;
+                bird_rotation.Angle += 15;
                 flip--;
             }
 
@@ -68,22 +70,25 @@ namespace Flappybird
             tickCount++;
             if (goingUp > 0)
             {
-                Canvas.SetTop(lb_Bird, Canvas.GetTop(lb_Bird) - goingUp);
+                Canvas.SetTop(lb_Bird, Canvas.GetTop(lb_Bird) - goingUp / 2);
                 goingUp--;
             }
-            if (tickCount % 10 == 0)
+            if (tickCount % 4 == 0)
             {
                 fallSpeed++;
             }
 
-            if(tickCount % 30 == 0)
+            if(tickCount % 60 == 0)
             {
                 Create_Pipes();
             }
-
+                toBeRemoved = new List<Rectangle>();
             foreach(Rectangle p in Pipe_path.Children)
             {
-                
+                    if(Canvas.GetLeft(p) < -45)
+                    {
+                        toBeRemoved.Add(p);
+                    }
                 Canvas.SetLeft(p,Canvas.GetLeft(p) - 5);
                 if(Canvas.GetLeft(p) >= 10 && Canvas.GetLeft(p) <= 90)
                     {
@@ -108,6 +113,10 @@ namespace Flappybird
                         }
                     }
             }
+            foreach (Rectangle r in toBeRemoved)
+                {
+                    Pipe_path.Children.Remove(r);
+                }
             }
         }
 
@@ -116,12 +125,12 @@ namespace Flappybird
             Random rnd = new Random();
             if (e.Key == Key.Space)
             {
-                goingUp = 10;
+                goingUp = 20;
                 fallSpeed = 1;
 
                 if(rnd.Next(0,100) == 1)
                 {
-                    flip = 12;
+                    flip = 24;
                 }
 
             }
@@ -134,7 +143,7 @@ namespace Flappybird
             Rectangle pipeTop = new Rectangle();
 
             int topPipeHeight = rnd.Next(30,180);
-            int bottomPipeHeight = (int)((450 - topPipeHeight) - lb_Bird.Height - rnd.Next(110,230));
+            int bottomPipeHeight = (int)((Pipe_path.ActualHeight - topPipeHeight) - lb_Bird.Height - rnd.Next(110,190));
 
             pipeBottom.Height = bottomPipeHeight;
             pipeTop.Height = topPipeHeight;
