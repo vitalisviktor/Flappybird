@@ -10,7 +10,20 @@
 
   <ItemGroup>
     <None Remove="bird.png" />
+    <None Remove="desert.jpg" />
+    <None Remove="iceberg.jpg" />
     <None Remove="pipe.png" />
+    <None Remove="plains.jpg" />
+    <None Remove="rainforest.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="desert.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="iceberg.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +31,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="pipe.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="plains.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="rainforest.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

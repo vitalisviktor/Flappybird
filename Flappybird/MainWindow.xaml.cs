@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Flappybird
@@ -16,6 +15,8 @@ namespace Flappybird
     {
 
         private DispatcherTimer timer;
+
+        private List<string> backgrounds = new List<string>() { "Plains", "Desert", "Rainforest", "Ice" };
         private Random rnd;
         private int tickCount;
         private int fallSpeed;
@@ -30,6 +31,9 @@ namespace Flappybird
         public MainWindow()
         {
             InitializeComponent();
+
+            lbx_backgroundselect.ItemsSource = backgrounds;
+            lbx_backgroundselect.SelectedItem = backgrounds[0];
             //stopwatch = new Stopwatch();
             tickCount = 0;
             fallSpeed = 1;
@@ -43,7 +47,6 @@ namespace Flappybird
         private void Tick(object? sender, EventArgs e)
         {
             tickCount++;
-            lb_Bird.Visibility = Visibility.Visible;
             lb_Bird.Focus();
 
 
@@ -58,12 +61,12 @@ namespace Flappybird
                 flip--;
             }
 
-            if (Canvas.GetTop(lb_Bird) <= -10)
+            if (Canvas.GetTop(lb_Bird) <= -15)
             {
                 MessageBox.Show("Meghaltál", "Vesztes");
 
             }
-            else if (Canvas.GetTop(lb_Bird) >= 400)
+            else if (Canvas.GetTop(lb_Bird) >= Bird_path.ActualHeight - 20)
             {
                 MessageBox.Show("Meghaltál", "Vesztes");
 
@@ -165,16 +168,16 @@ namespace Flappybird
 
             pipeBottom.Width = 50;
             pipeTop.Width = 50;
-            
+
             Pipe_path.Children.Add(pipeBottom);
             Pipe_path.Children.Add(pipeTop);
 
             Canvas.SetLeft(pipeBottom, 800);
             Canvas.SetLeft(pipeTop, 800);
 
-             Canvas.SetBottom(pipeBottom, 0);
+            Canvas.SetBottom(pipeBottom, 0);
 
-            
+
 
         }
 
@@ -182,6 +185,30 @@ namespace Flappybird
         {
             btn_start.Visibility = Visibility.Collapsed;
             txbl_GameTitle.Visibility = Visibility.Collapsed;
+            lbx_backgroundselect.Visibility = Visibility.Collapsed;
+            lbl_forbackground.Visibility = Visibility.Collapsed;
+            lb_Bird.Visibility = Visibility.Visible;
+
+            switch (lbx_backgroundselect.SelectedIndex)
+            {
+                case 0:
+                    img_background.Source = new BitmapImage(new Uri("/plains.jpg", UriKind.Relative));
+
+                    break;
+                case 1:
+                    img_background.Source = new BitmapImage(new Uri("/desert.jpg", UriKind.Relative));
+
+                    break;
+                case 2:
+                    img_background.Source = new BitmapImage(new Uri("/rainforest.jpg", UriKind.Relative));
+
+                    break;
+                case 3:
+                    img_background.Source = new BitmapImage(new Uri("/iceberg.jpg", UriKind.Relative));
+
+                    break;
+            }
+
             CompositionTarget.Rendering += Tick;
 
         }
