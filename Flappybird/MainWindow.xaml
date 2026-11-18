@@ -8,20 +8,23 @@
         Title="Flappy Bird" Height="450" Width="800">
     <Grid>
         <Canvas x:Name="Bird_path">
-            <Label x:Name="lb_Bird" Height="40" Width="40" Content="Bird" FontSize="18" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True" Background="Turquoise" RenderTransformOrigin="0.5,0.5">
-                <Label.RenderTransform>
+
+            <TextBlock x:Name="txbl_GameTitle" Text="Flappy Bird Game" Canvas.Left="170" Canvas.Top="100" FontSize="60"/>
+            <Button x:Name="btn_start" Content="Start" Canvas.Top="250" Canvas.Left="350" Width="100" Height="50" Click="btn_start_Click" />
+            <Image x:Name="lb_Bird" Height="40" Width="40" Source="/bird.png" Stretch="Uniform" Canvas.Left="50" Canvas.Top="50" KeyDown="lb_Bird_KeyDown" Focusable="True" RenderTransformOrigin="0.5,0.5" Visibility="Hidden" FocusVisualStyle="{x:Null}">
+                <Image.RenderTransform>
                     <TransformGroup >
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform x:Name="bird_rotation" Angle="0"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
+                </Image.RenderTransform>
+            </Image>
         </Canvas>
         
         <Canvas x:Name="Pipe_path">
-            
+
 
         </Canvas>
     </Grid>
